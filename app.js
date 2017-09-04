@@ -44,3 +44,25 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+//init firebase
+var config = {
+    apiKey: "AIzaSyAZmipv-1ohd8x3K521rwd1Av_d5QELSDA",
+    authDomain: "barualarm.firebaseapp.com",
+    databaseURL: "https://barualarm.firebaseio.com",
+    projectId: "barualarm",
+    storageBucket: "barualarm.appspot.com",
+    messagingSenderId: "943709348014"
+  };
+firebase.initializeApp(config);
+
+//get elements
+const preObject = document.getElementById('object');
+
+//create references
+const dbRefObject = firebase.database().ref().child('object');
+
+//sync objects
+dbRefObject.on('value', snap => {
+  preObject.innerText = JSON.stringify(snap.val(), null, 3);
+});

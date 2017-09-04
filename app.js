@@ -10,7 +10,8 @@ var users = require('./routes/users');
 
 var app = express();
 
-var firebase = require('firebase');
+//var firebase = require('firebase');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -26,24 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 
-(function(){
-  const config = {apiKey: "AIzaSyAZmipv-1ohd8x3K521rwd1Av_d5QELSDA",
-    authDomain: "barualarm.firebaseapp.com",
-    databaseURL: "https://barualarm.firebaseio.com",
-    projectId: "barualarm",
-    storageBucket: "barualarm.appspot.com",
-    messagingSenderId: "943709348014"
-  };
-  firebase.initializeApp(config);
 
-  const preObject = document.getElementById('object');
-
-  const dbRefObject = firebase.database().ref().child('object');
-
-  dbRefObject.on('value', snap => {
-    preObject.innerText = JSON.stringify(snap.val(), null, 3);
-  });
-}());
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

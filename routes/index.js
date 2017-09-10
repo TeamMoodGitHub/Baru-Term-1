@@ -18,18 +18,21 @@ router.get('/', function(req, res, next) {
   firebase.database().ref('users/').set({
     username: "smg",
     email: "yarubogesh@haHAA.com",
-    profile_picture : "blank"
+    profile_picture : "nothing"
   });
 
-  firebase.database().ref('users/').once('value').then(function(snapshot){
-    console.log(snapshot.val());
-  }, function(error){
-    console.log("Error: " + error.code);
-  });
-
+  
+  
 
 
   res.render('index', { title: 'Kill me pls' });
+
+  firebase.database().ref('users/').once('value').then(function(snapshot){
+    var user = snapshot.val();
+    console.log(user);
+  }, function(error){
+    console.log("Error: " + error.code);
+  });
 
 });
 

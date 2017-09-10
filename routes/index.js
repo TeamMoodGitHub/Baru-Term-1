@@ -1,6 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var firebase = require('firebase');
+var jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+
+const dom = new JSDOM('../views/index.ejs');
+//console.log(dom.window.document.querySelector("p").textContent);
 
 var config = {apiKey: "AIzaSyAZmipv-1ohd8x3K521rwd1Av_d5QELSDA",
     authDomain: "barualarm.firebaseapp.com",
@@ -21,18 +26,20 @@ router.get('/', function(req, res, next) {
     profile_picture : "nothing"
   });
 
+  var ref = firebase.database().ref();
+
+  ref.on("value", function(snapshot){
+    console.log(snapshot.val());
+  }, function(error){
+    console.log("Error: " + error.code);
+  });
+
   
   
 
 
   res.render('index', { title: 'Kill me pls' });
 
-  firebase.database().ref('users/').once('value').then(function(snapshot){
-    var user = snapshot.val();
-    console.log(user);
-  }, function(error){
-    console.log("Error: " + error.code);
-  });
 
 });
 

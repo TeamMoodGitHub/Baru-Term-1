@@ -1,11 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var firebase = require('firebase');
-var jsdom = require("jsdom");
-const { JSDOM } = jsdom;
 
-const dom = new JSDOM('../views/index.ejs');
-//console.log(dom.window.document.querySelector("p").textContent);
+
+
 
 var config = {apiKey: "AIzaSyAZmipv-1ohd8x3K521rwd1Av_d5QELSDA",
     authDomain: "barualarm.firebaseapp.com",
@@ -16,29 +14,27 @@ var config = {apiKey: "AIzaSyAZmipv-1ohd8x3K521rwd1Av_d5QELSDA",
   };
   firebase.initializeApp(config);
 
-
+var date = Date.now();
+//dateJson = date.toJSON()
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  firebase.database().ref('users/').set({
-    username: "smg",
-    email: "yarubogesh@haHAA.com",
-    profile_picture : "nothing"
-  });
+  //firebase.database().ref('alarms/').set(dateJson);
 
   var ref = firebase.database().ref();
-
+  
   ref.on("value", function(snapshot){
     console.log(snapshot.val());
+    res.render('index', { title: JSON.stringify(snapshot.val()) });
   }, function(error){
-    console.log("Error: " + error.code);
+    //console.log("Error: " + error.code);
   });
 
   
   
 
 
-  res.render('index', { title: 'Kill me pls' });
+  
 
 
 });

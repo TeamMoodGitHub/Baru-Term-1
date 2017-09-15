@@ -39,4 +39,7 @@ router.get('/', function(req, res, next) {
 
 });
 
+router.get('/testAction', function(req, res, next){
+  console.log(req.query.hr)
+})
 module.exports = router;

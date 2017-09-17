@@ -25,21 +25,18 @@ router.get('/', function(req, res, next) {
   
   ref.on("value", function(snapshot){
     console.log(snapshot.val());
-    res.render('index', { title: JSON.stringify(snapshot.val()) });
+    res.render('index', { title: JSON.stringify(snapshot.val()["alarms"]) });
   }, function(error){
     //console.log("Error: " + error.code);
   });
 
-  
-  
-
-
-  
-
-
 });
 
 router.get('/testAction', function(req, res, next){
-  console.log(req.query.hr)
+  var alarmTime = req.query.time;
+  console.log(alarmTime);
+  firebase.database().ref('alarms/').set(alarmTime);
+
+  res.render('index', {alarm: JSON.stringify(snapshot.val()["alarms"])})
 })
 module.exports = router;

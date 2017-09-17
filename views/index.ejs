@@ -6,17 +6,16 @@
   </head>
   <body>
 
-    <p><%= title %></p>
+    <p>Make an alarm</p>
     
     <form action="/testAction" method="GET">
-      Hour<br>
-      <input type="text" name="hr" value="Mickey"><br>
-      Minute<br>
-      <input type="text" name="min" value="Mouse"><br><br>
+      Set time<br>
+      <input type="time" name="time"><br>
+      <br>
       <input type="submit" value="Submit">
     </form>
 
-
+    <p><%= alarm %></p>
     
     <script src="index.js"></script>
   </body>

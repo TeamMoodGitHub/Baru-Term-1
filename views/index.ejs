@@ -8,17 +8,29 @@
   <body>
 
     <p>Make an alarm</p>
-<!--    
-    <form action="/testAction" method="GET">
-      Set time<br>
-      <input type="time" name="time"><br>
+    
+    <form action="/newAlarm" method="GET">
+      Set time<br><br>
+      Hour<input type="number" name="hour" min="0" max="24"><br>
+      <br>
+      Minute<input type="number" name="minute" min="1" max"59"><br>
       <br>
       <input type="submit" value="Submit">
-    </form>-->
+    </form>
 
+    <!--Set time<br><br>
+    Hour <input type="number" name="hour" id="hour" min="0" max="24"><br>
+    <br>
+    Minute <input type="number" name="minute" id="minute" min="1" max"59"><br>
+    <br>
+
+    <button id="setAlarmButton">set alarm</button>
+    <br>
+    <br>
+    -->
     <button id="getAlarmButton">get alarm</button>
 
-    <p id="alarmText">the alarm will show up here when you press the button</p>
+    <h3 id="alarmText"></h3>
     
     <script src="index.js"></script>
   </body>
@@ -32,6 +44,8 @@
           $("#alarmText").html(result);
         }});
     });
+
+
 
   </script>
 </html>

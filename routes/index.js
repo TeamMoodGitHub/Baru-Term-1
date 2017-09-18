@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
   var ref = firebase.database().ref();
   
   ref.on("value", function(snapshot){
-    console.log(snapshot.val());
+    //console.log(snapshot.val());
     res.render('index', { title:"alarms"});
     
   }, function(error){
@@ -47,4 +47,12 @@ router.get('/testAction', function(req, res, next){
   })
 
 });
+
+router.get("/newAlarm", function(req, res, next){
+  var hour = req.query.hour;
+  var minute = req.query.minute;
+  var time = (hour + ":" + minute);
+  firebase.database().ref('alarms/').set(time);
+  console.log(hour + ":" + minute);
+})
 module.exports = router;

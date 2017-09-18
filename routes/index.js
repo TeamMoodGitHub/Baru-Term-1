@@ -20,23 +20,31 @@ var date = Date.now();
 /* GET home page. */
 router.get('/', function(req, res, next) {
   //firebase.database().ref('alarms/').set(dateJson);
-
+  
   var ref = firebase.database().ref();
   
   ref.on("value", function(snapshot){
     console.log(snapshot.val());
-    res.render('index', { title: JSON.stringify(snapshot.val()["alarms"]) });
+    res.render('index', { title:"alarms"});
+    
   }, function(error){
     //console.log("Error: " + error.code);
   });
-
+  
 });
 
 router.get('/testAction', function(req, res, next){
-  var alarmTime = req.query.time;
-  console.log(alarmTime);
-  firebase.database().ref('alarms/').set(alarmTime);
+  // var alarmTime = req.query.time;
+  // console.log(alarmTime);
+  // firebase.database().ref('alarms/').set(alarmTime);
+  
+  // res.send(snapshot.val()["alarms"]);
 
-  res.render('index', {alarm: JSON.stringify(snapshot.val()["alarms"])})
-})
+  firebase.database().ref().on("value", function(snapshot){
+    console.log(typeof(snapshot.val()));
+    res.send(snapshot.val()["alarms"]);
+    
+  })
+
+});
 module.exports = router;

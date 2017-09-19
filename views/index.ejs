@@ -15,7 +15,11 @@
       <br>
       Minute<input type="number" name="minute" min="1" max"59"><br>
       <br>
+      Give it a name<br>
+      <input type="text" name="name">
       <input type="submit" value="Submit">
+      
+      <br><br><br>
     </form>
 
     <!--Set time<br><br>
@@ -29,6 +33,9 @@
     <br>
     -->
     <button id="getAlarmButton">get alarm</button>
+    <br>
+    Name:<br>
+    <input type="text" id="getAlarmName" value="baru"></p>
 
     <h3 id="alarmText"></h3>
     
@@ -38,9 +45,9 @@
 
     $("#getAlarmButton").click(function(){
         // $("#alarmText").html("TESTING ALARM");
-        $.ajax({url: "/testAction", success: function(result){
+        $.ajax({url: "/testAction/", data:$("getAlarmName"), success: function(result){
           console.log("successful ajax request");
-          console.log("Result: " + result);
+          console.log("Data: " + $("getAlarmName"));
           $("#alarmText").html(result);
         }});
     });

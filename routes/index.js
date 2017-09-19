@@ -42,7 +42,7 @@ router.get('/testAction', function(req, res, next){
 
   firebase.database().ref().on("value", function(snapshot){
     console.log(typeof(snapshot.val()));
-    res.send(snapshot.val()["alarms"]);
+    res.send(snapshot.val()["alarms/" + req.query.getAlarmName]);
     
   })
 
@@ -52,7 +52,7 @@ router.get("/newAlarm", function(req, res, next){
   var hour = req.query.hour;
   var minute = req.query.minute;
   var time = (hour + ":" + minute);
-  firebase.database().ref('alarms/').set(time);
+  firebase.database().ref('alarms/' + req.query.name).set(time);
   console.log(hour + ":" + minute);
 })
 module.exports = router;

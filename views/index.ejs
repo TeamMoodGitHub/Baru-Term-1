@@ -2,10 +2,14 @@
 <html>
   <head>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="943709348014-7ih724grhhmlq50te9tn02gmbi39s4ao.apps.googleusercontent.com">
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
 
     <p>Make an alarm</p>
     
@@ -45,9 +49,13 @@
 
     $("#getAlarmButton").click(function(){
         // $("#alarmText").html("TESTING ALARM");
-        $.ajax({url: "/testAction/", data:$("getAlarmName"), success: function(result){
+        var alarmName = $("#getAlarmName").val();
+        //console.log("Data: " + alarmName);
+        console.log(JSON.stringify(alarmName));
+        //console.log(JSON.stringify({"alarmName":alarmName}));
+        $.ajax({type:"GET", url: "/testAction",data:{"alarmName":JSON.stringify(alarmName)}, datatype:"json", success: function(result){
           console.log("successful ajax request");
-          console.log("Data: " + $("getAlarmName"));
+          
           $("#alarmText").html(result);
         }});
     });

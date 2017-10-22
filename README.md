@@ -17,3 +17,17 @@ In the last few weeks, I worked on the front end. I made fields to define the ho
 # Conclusion
 
 No, the project barely works compared to what I had planned. But I am proud of what I accomplished still and I feel like I learned a ton.
+
+# Running my project on your machine
+
+If you are interested in running my account, you need a few things
+
+1)Google Account with at least 1 firebase project
+2)Node.js
+
+1)Clone the project
+2)Open a terminal in the project folder and type `npm install` to install required packages. The important ones are Firebase, Ejs, and Express.
+3)Run firebase setup, login to your google account, and choose your firebase project. 
+4)`npm start` should start the project.
+5)Point to `localhost:3000` in your browser.
+6)Open firebase in a separate tab, and watch how manipulating data on the frontend will change data within the database.
